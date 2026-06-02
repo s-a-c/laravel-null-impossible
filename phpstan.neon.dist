@@ -1,0 +1,17 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    level: max
+    phpVersion: 80500
+    paths:
+        - app
+        - config
+        - database
+        - routes
+    ignoreErrors:
+        -
+            identifier: classConstant.internalClass
+            path: config/pulse.php
+    reportUnmatchedIgnoredErrors: true
+    treatPhpDocTypesAsCertain: true

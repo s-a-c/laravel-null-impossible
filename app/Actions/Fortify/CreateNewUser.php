@@ -1,0 +1,48 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Actions\Fortify;
+
+use App\Actions\Teams\CreateTeam;
+use App\Concerns\PasswordValidationRules;
+use App\Concerns\ProfileValidationRules;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+
+class CreateNewUser implements CreatesNewUsers
+{
+    use PasswordValidationRules;
+    use ProfileValidationRules;
+
+    public function __construct(
+        private CreateTeam $createTeam,
+    ) {}
+
+    /**
+     * Validate and create a newly registered user.
+     *
+     * @param  array<mixed, mixed>  $input
+     */
+    public function create(array $input): User
+    {
+        $validated = Validator::make($input, [
+            ...$this->profileRules(),
+            'password' => $this->passwordRules(),
+        ])->validate();
+
+        return DB::transaction(function () use ($validated) {
+            $user = User::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'password' => $validated['password'],
+            ]);
+
+            $this->createTeam->handle($user, $user->name."'s Team", isPersonal: true);
+
+            return $user;
+        });
+    }
+}

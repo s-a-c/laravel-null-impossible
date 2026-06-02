@@ -1,0 +1,58 @@
+#:schema https://mago.carthage.software/1.29.0/schema.json
+version = "1"
+php-version = "8.5"
+
+[source]
+paths = ["app", "config", "database", "routes", "tests"]
+includes = ["vendor"]
+excludes = ["bootstrap/cache/**", "storage/**", "node_modules/**", "public/build/**"]
+extensions = ["php"]
+
+[source.glob]
+literal-separator = true
+
+[parser]
+enable-short-tags = false
+
+[linter.rules]
+strict-types = { enabled = true, level = "Error" }
+excessive-parameter-list = { enabled = true, level = "Error", threshold = 8 }
+too-many-methods = { enabled = true, level = "Error", threshold = 20 }
+sensitive-parameter = { enabled = true, level = "Warning" }
+assert-description = { enabled = false }
+function-name = { enabled = false }
+literal-named-argument = { enabled = false }
+no-boolean-flag-parameter = { enabled = false }
+no-literal-password = { enabled = false }
+prefer-first-class-callable = { enabled = false }
+prefer-static-closure = { enabled = false }
+
+[formatter]
+excludes = ["**/*"]
+
+[guard]
+mode = "default"
+
+[[guard.perimeter.rules]]
+namespace = "App\\Monads\\"
+permit = ["App\\Monads\\"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Domain\\"
+permit = ["App\\Monads\\", "App\\Domain\\", "@native"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Application\\"
+permit = ["App\\Monads\\", "App\\Domain\\", "App\\Application\\", "App\\Enums\\", "App\\Models\\"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Infrastructure\\"
+permit = ["App\\Monads\\", "App\\Domain\\", "App\\Application\\", "App\\Infrastructure\\", "App\\Models\\", "App\\Enums\\", "Illuminate\\Database\\Eloquent\\", "Illuminate\\Support\\"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Http\\"
+permit = ["App\\Monads\\", "App\\Domain\\", "App\\Application\\", "App\\Http\\", "App\\Models\\", "App\\Enums\\"]
+
+[[guard.perimeter.rules]]
+namespace = "App\\Filament\\"
+permit = ["App\\Monads\\", "App\\Domain\\", "App\\Application\\", "App\\Filament\\", "App\\Models\\", "App\\Enums\\"]

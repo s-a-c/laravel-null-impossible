@@ -1,0 +1,31 @@
+{
+    "$schema": "https://www.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vp build",
+        "dev": "vp dev",
+        "prepare": "vp config"
+    },
+    "dependencies": {
+        "@laravel/passkeys": "^0.2.0",
+        "@tailwindcss/vite": "^4.1.11",
+        "autoprefixer": "^10.4.20",
+        "concurrently": "^9.0.1",
+        "laravel-echo": "^2.3.4",
+        "laravel-vite-plugin": "^3.1",
+        "pusher-js": "^8.5.0",
+        "tailwindcss": "^4.0.7",
+        "vite": "catalog:"
+    },
+    "devDependencies": {
+        "@typescript/native-preview": "7.0.0-dev.20260527.2",
+        "vite-plus": "catalog:"
+    },
+    "optionalDependencies": {
+        "@rollup/rollup-linux-x64-gnu": "4.9.5",
+        "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
+        "lightningcss-linux-x64-gnu": "^1.29.1"
+    },
+    "packageManager": "pnpm@11.5.0"
+}
