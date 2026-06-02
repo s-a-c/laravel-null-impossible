@@ -11,11 +11,15 @@ Laravel 13 starter kit for the [Null Impossible Domain](docs/architecture/null-i
 
 ## Create a New Application
 
+Use **Herd’s PHP** (or any PHP **without** the `psr` extension). Homebrew PHP often ships `ext-psr`, which breaks Pest’s mutation plugin during `laravel new` with a `PsrExt\SimpleCache\CacheInterface` fatal error.
+
 ```bash
 laravel new my-app --using=s-a-c/laravel-null-impossible --pnpm
 cd my-app
 composer run dev
 ```
+
+If the installer reports **Pest initialized** failed but the app was created, check `php -m | grep psr`. With Herd’s PHP, `php artisan test` should still pass. Disable the extension on Homebrew PHP (`pecl uninstall psr` or use Herd’s `php` on your `PATH` first).
 
 Or from the repository before Packagist publication:
 
@@ -24,6 +28,8 @@ laravel new my-app --using=https://github.com/s-a-c/laravel-null-impossible --pn
 ```
 
 The installer runs Composer `post-create-project-cmd` (app key, SQLite file, migrations). It does **not** seed default users. Register the first account through the app, or run `php artisan db:seed` in **local** only for a demo user.
+
+Choosing **Pest** in the installer prompts is fine (the kit already uses Pest). A failed **Pest initialized** step is usually the `ext-psr` conflict above, not a broken application.
 
 ## Setup (Existing Clone)
 

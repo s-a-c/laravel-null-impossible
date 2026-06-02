@@ -12,6 +12,9 @@
         "monads"
     ],
     "license": "MIT",
+    "conflict": {
+        "ext-psr": "*"
+    },
     "require": {
         "php": "^8.5",
         "filament/filament": "^5.6",
