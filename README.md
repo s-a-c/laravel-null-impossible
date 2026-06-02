@@ -35,10 +35,10 @@ This installs PHP dependencies, copies `.env`, generates a key, migrates, instal
 
 ## Quality Gates
 
-| Profile | Command | When to use |
-| ------- | ------- | ----------- |
-| Fast | `composer test` | Day-to-day app development after `laravel new` |
-| Strict | `composer ci:strict` | Maintaining the Null Impossible core (PHPStan, Mago, type/coverage/mutation) |
+| Profile | Command              | When to use                                                                  |
+| ------- | -------------------- | ---------------------------------------------------------------------------- |
+| Fast    | `composer test`      | Day-to-day app development after `laravel new`                               |
+| Strict  | `composer ci:strict` | Maintaining the Null Impossible core (PHPStan, Mago, type/coverage/mutation) |
 
 ## What Is Included
 

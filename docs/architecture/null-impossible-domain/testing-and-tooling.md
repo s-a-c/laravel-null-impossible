@@ -101,4 +101,4 @@ Baselines hide architectural drift. This project fixes violations at the source 
 Configured in `phpunit.xml` source excludes:
 
 - `app/Filament/**`
-These files remain in PHPStan, Rector, Mago, and architecture checks.
+  These files remain in PHPStan, Rector, Mago, and architecture checks.

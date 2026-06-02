@@ -4,12 +4,12 @@ This page records architecture-relevant package and integration state for the `s
 
 ## Runtime Baseline
 
-| Area           | Current State                          | Architectural Impact                                              |
-| -------------- | -------------------------------------- | ----------------------------------------------------------------- |
-| PHP            | `php` constraint is `^8.5`             | Native `\|>` examples are valid for pure transforms.              |
-| Laravel        | `laravel/framework` is a direct dependency | Framework APIs stay outside the null-impossible core.          |
-| Livewire / Flux / Blaze | Installed              | UI delivery belongs in HTTP/Livewire or Filament surfaces.       |
-| Vite+ / pnpm   | Frontend scripts run through `vp` and `pnpm` | Use `pnpm run build` for production assets.                  |
+| Area                    | Current State                                | Architectural Impact                                       |
+| ----------------------- | -------------------------------------------- | ---------------------------------------------------------- |
+| PHP                     | `php` constraint is `^8.5`                   | Native `\|>` examples are valid for pure transforms.       |
+| Laravel                 | `laravel/framework` is a direct dependency   | Framework APIs stay outside the null-impossible core.      |
+| Livewire / Flux / Blaze | Installed                                    | UI delivery belongs in HTTP/Livewire or Filament surfaces. |
+| Vite+ / pnpm            | Frontend scripts run through `vp` and `pnpm` | Use `pnpm run build` for production assets.                |
 
 ## Monadic Core
 
@@ -23,11 +23,11 @@ Application code should not import transitive functional packages for domain wor
 
 ## API And Broadcasting
 
-| Package / File        | Current State                     | Boundary Rule                                                                 |
-| --------------------- | --------------------------------- | ----------------------------------------------------------------------------- |
-| `laravel/sanctum`     | Installed                         | Token issuance belongs behind application use cases returning `Result`.       |
-| `laravel/reverb`      | Installed                         | Channel authorization delegates to application code at `routes/channels.php`. |
-| `laravel-echo` / `pusher-js` | Installed via pnpm           | Browser subscription code lives under frontend resources.                     |
+| Package / File               | Current State      | Boundary Rule                                                                 |
+| ---------------------------- | ------------------ | ----------------------------------------------------------------------------- |
+| `laravel/sanctum`            | Installed          | Token issuance belongs behind application use cases returning `Result`.       |
+| `laravel/reverb`             | Installed          | Channel authorization delegates to application code at `routes/channels.php`. |
+| `laravel-echo` / `pusher-js` | Installed via pnpm | Browser subscription code lives under frontend resources.                     |
 
 ## Filament Delivery Tier
 
